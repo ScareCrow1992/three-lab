@@ -7,6 +7,7 @@ import AnimationsTab from "./pages/3d-animations";
 import LightingTab from "./pages/lighting";
 import MaterialTab from "./pages/material";
 import WebGPUTab from "./pages/webgpu";
+import ZustandExerciseTab from "./pages/zustand-exercise";
 
 
 export const router = createBrowserRouter([{
@@ -18,6 +19,6 @@ export const router = createBrowserRouter([{
       { path: "lighting", element: <LightingTab />, errorElement: <NotFoundPage /> },
       { path: "material", element: <MaterialTab />, errorElement: <NotFoundPage /> },
       { path: "webgpu", element: <WebGPUTab />, errorElement: <NotFoundPage /> },
-      
+      {path : "zustand-exercise", element: <ZustandExerciseTab/>, errorElement: <NotFoundPage />}
   ]
 }]);

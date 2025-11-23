@@ -7,6 +7,7 @@ const TABS = [
   { id: "material", label: "Material" },
   { id: "lighting", label: "Lighting" },
   { id: "webgpu", label: "Webgpu" },
+  {id: "zustand-exercise", label: "Zustand-Exercise"}
   // { id: "1animations", label: "Animations" },
   // { id: "1material", label: "Material" },
   // { id: "1lighting", label: "Lighting" },
