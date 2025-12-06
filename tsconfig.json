@@ -3,5 +3,15 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    // ...기존 설정
+    "baseUrl": ".", // 프로젝트 루트를 기준으로 paths를 설정
+    "paths": {
+      "@/*": ["src/*"], // '@/*'로 시작하는 경로는 'src/' 아래에서 찾음
+      "@components/*": ["src/components/*"], // '@components/*'는 'src/components/' 아래
+      "@utils/*": ["src/utils/*"]
+    },
+    "types": ["vite/client", "vite-plugin-glsl/ext"]
+  }
 }
