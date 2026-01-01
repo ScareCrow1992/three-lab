@@ -8,17 +8,44 @@ import LightingTab from "./pages/lighting";
 import MaterialTab from "./pages/material";
 import WebGPUTab from "./pages/webgpu";
 import ZustandExerciseTab from "./pages/zustand-exercise";
+import PostProcessTab from "./pages/post-process";
 
-
-export const router = createBrowserRouter([{
-  path: "/",
-  element: <App />,
-  children: [
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
       { index: true, element: <Home />, errorElement: <NotFoundPage /> },
-      { path: "animations", element: <AnimationsTab />, errorElement: <NotFoundPage /> },
-      { path: "lighting", element: <LightingTab />, errorElement: <NotFoundPage /> },
-      { path: "material", element: <MaterialTab />, errorElement: <NotFoundPage /> },
-      { path: "webgpu", element: <WebGPUTab />, errorElement: <NotFoundPage /> },
-      {path : "zustand-exercise", element: <ZustandExerciseTab/>, errorElement: <NotFoundPage />}
-  ]
-}]);
+      {
+        path: "animations",
+        element: <AnimationsTab />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "lighting",
+        element: <LightingTab />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "material",
+        element: <MaterialTab />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "webgpu",
+        element: <WebGPUTab />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "zustand-exercise",
+        element: <ZustandExerciseTab />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "post-process",
+        element: <PostProcessTab />,
+        errorElement: <NotFoundPage />,
+      },
+    ],
+  },
+]);
