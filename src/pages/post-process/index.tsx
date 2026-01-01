@@ -49,7 +49,7 @@ function SceneRoot() {
       new THREE.Matrix4().setPosition(7, 0, 3)
     );
 
-    const selectedArray = new Float32Array([0, 1, 0, 1]);
+    const selectedArray = new Float32Array([0, 1.0, 0, 1.0]);
     const BufferAttribute = new THREE.BufferAttribute(selectedArray, 1);
     refInstsancedMesh.current.geometry.setAttribute(
       "selected",
