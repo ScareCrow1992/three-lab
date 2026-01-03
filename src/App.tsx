@@ -9,6 +9,10 @@ const TABS = [
   { id: "webgpu", label: "Webgpu" },
   { id: "zustand-exercise", label: "Zustand-Exercise" },
   { id: "post-process", label: "Post-Process" },
+  { id: "sponza", label: "Sponza" },
+  { id: "anisotropy", label: "Anisotropy" },
+  { id: "barn-lamp", label: "Barn-Lamp" },
+  { id: "multiple", label: "Multiple" },
 
   // { id: "1animations", label: "Animations" },
   // { id: "1material", label: "Material" },
@@ -90,7 +94,7 @@ function App() {
         <div className="bg-[#282E38] h-screen relative shrink">
           <SideTabNav />
         </div>
-        <div className="relative bg-yellow-100 grow min-w-0  h-full w-full">
+        <div className="relative grow min-w-0  h-full w-full">
           <Outlet />
         </div>
       </div>

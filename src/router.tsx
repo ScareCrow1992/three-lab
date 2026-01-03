@@ -9,6 +9,10 @@ import MaterialTab from "./pages/material";
 import WebGPUTab from "./pages/webgpu";
 import ZustandExerciseTab from "./pages/zustand-exercise";
 import PostProcessTab from "./pages/post-process";
+import SponzaTab from "./pages/sponza";
+import AnisotropyTab from "./pages/anisotropy";
+import BarnLampTab from "./pages/barn-lamp";
+import MultipleTab from "./pages/multiple";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +48,26 @@ export const router = createBrowserRouter([
       {
         path: "post-process",
         element: <PostProcessTab />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "sponza",
+        element: <SponzaTab />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "anisotropy",
+        element: <AnisotropyTab />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "barn-lamp",
+        element: <BarnLampTab />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "multiple",
+        element: <MultipleTab />,
         errorElement: <NotFoundPage />,
       },
     ],

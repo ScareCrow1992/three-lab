@@ -2,7 +2,6 @@ import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { EffectComposer } from "@react-three/postprocessing";
-import { CenterCircle } from "./center-circle-effect";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Outline } from "./outline";
 
@@ -55,6 +54,8 @@ function SceneRoot() {
       "selected",
       BufferAttribute
     );
+
+    refInstsancedMesh.current.instanceMatrix.needsUpdate = true;
   }, [refInstsancedMesh.current]);
 
   const { geometry, material } = useMemo(() => {
