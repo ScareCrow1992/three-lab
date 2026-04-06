@@ -13,6 +13,7 @@ const TABS = [
   { id: "anisotropy", label: "Anisotropy" },
   { id: "barn-lamp", label: "Barn-Lamp" },
   { id: "multiple", label: "Multiple" },
+  { id: "webgl", label: "WebGL" },
 
   // { id: "1animations", label: "Animations" },
   // { id: "1material", label: "Material" },

@@ -32,7 +32,7 @@ function CardRender({
     sceneRef.current.add(object3d);
 
     sceneRef.current.add(
-      new THREE.DirectionalLight(new THREE.Color("white"), 1.5)
+      new THREE.DirectionalLight(new THREE.Color("white"), 1.5),
     );
     sceneRef.current.add(new THREE.AmbientLight());
 
@@ -42,13 +42,13 @@ function CardRender({
 
     controlsRef.current = new OrbitControls(
       cameraRef.current,
-      canvasRef.current
+      canvasRef.current,
     );
 
     sceneRef.current.userData.controls = controlsRef.current;
 
     controlsRef.current.enableZoom = false;
-  }, [object3d]);
+  }, [object3d, title]);
 
   useEffect(() => {
     if (!canvasTargetRef.current && canvasRef.current)
@@ -103,7 +103,7 @@ function CardRender({
       });
       storeKeyRef.current = storeKey;
     },
-    [initializeScene]
+    [initializeScene],
   );
 
   const offCanvasControl = useCallback((ev: MouseEvent) => {

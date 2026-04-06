@@ -8,6 +8,9 @@
     "types": ["vite/client", "vite-plugin-glsl/ext"],
     "skipLibCheck": true,
 
+    "allowJs": true, // JS 파일 import 허용
+    "checkJs": false, // JS 파일의 타입 체크 여부
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

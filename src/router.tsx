@@ -13,6 +13,7 @@ import SponzaTab from "./pages/sponza";
 import AnisotropyTab from "./pages/anisotropy";
 import BarnLampTab from "./pages/barn-lamp";
 import MultipleTab from "./pages/multiple";
+import WebGLTab from "./pages/webgl";
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +69,11 @@ export const router = createBrowserRouter([
       {
         path: "multiple",
         element: <MultipleTab />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "webgl",
+        element: <WebGLTab />,
         errorElement: <NotFoundPage />,
       },
     ],
