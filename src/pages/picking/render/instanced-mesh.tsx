@@ -150,19 +150,18 @@ function useCanvasInteraction(
       const width = Math.floor(size.width * pixelRatio);
       const height = Math.floor(size.height * pixelRatio);
 
-      const { pointX: orgPointX, pointY: orgPointY } = getPointerPosition(
-        ndcX,
-        ndcY,
-        size.width,
-        size.height,
+      const pointerPosition = getPointerPosition(ndcX, ndcY, width, height);
+      const pointX = THREE.MathUtils.clamp(pointerPosition.pointX, 0, width - 1);
+      const pointY = THREE.MathUtils.clamp(
+        pointerPosition.pointY,
+        0,
+        height - 1,
       );
-      const { pointX, pointY } = getPointerPosition(ndcX, ndcY, width, height);
+      const viewOffsetY = height - pointY - 1;
 
       const dictMat = prevRender(pickingTargets, pickingMaterial);
 
-      const scissorX = 1;
-      const scissorY = 1;
-      const pickingRT = new THREE.WebGLRenderTarget(width, height, {
+      const pickingRT = new THREE.WebGLRenderTarget(1, 1, {
         minFilter: THREE.NearestFilter,
         magFilter: THREE.NearestFilter,
         format: THREE.RGBAFormat,
@@ -173,50 +172,43 @@ function useCanvasInteraction(
 
       pickingRT.texture.colorSpace = THREE.NoColorSpace;
 
-      const orgRT = gl.getRenderTarget();
-
-      gl.setRenderTarget(pickingRT);
-
-      const cameraLayer = camera.layers.mask;
-
-      camera.layers.set(PICKING_LAYER);
-
-      console.log(orgPointX, orgPointY);
-
       pickRender(
         0,
         0,
-        size.width,
-        size.height,
-        size.width,
-        size.height,
+        1,
+        1,
+        1,
+        1,
         scene,
         camera,
         PICKING_LAYER,
         gl,
         pickingRT,
+        {
+          fullWidth: width,
+          fullHeight: height,
+          offsetX: pointX,
+          offsetY: viewOffsetY,
+          width: 1,
+          height: 1,
+        },
       );
-
-      // gl.render(scene, camera);
-
-      camera.layers.mask = cameraLayer;
 
       postRender(dictMat);
 
-      gl.setRenderTarget(orgRT);
-
       // RGBA 값이 0~255의 정수로 작성되므로, Uint8Array를 사용해야한다
-      // const pickingData = new Uint8Array(4 * width * height);
-      const pickingData = new Uint8Array(4 * width * height);
+      const pickingData = new Uint8Array(4);
 
       await gl.readRenderTargetPixelsAsync(
         pickingRT,
-        pointX,
-        pointY,
+        0,
+        0,
         1,
         1,
         pickingData,
       );
+
+      pickingRT.dispose();
 
       // 화면 내의 모든 요소를 얻고 싶을 경우
       /* await gl.readRenderTargetPixelsAsync(
