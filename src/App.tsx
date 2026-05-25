@@ -14,6 +14,8 @@ const TABS = [
   { id: "barn-lamp", label: "Barn-Lamp" },
   { id: "multiple", label: "Multiple" },
   { id: "webgl", label: "WebGL" },
+  { id: "line-segment-intersection", label: "Geometry" },
+  { id: "picking", label: "Picking" },
 
   // { id: "1animations", label: "Animations" },
   // { id: "1material", label: "Material" },

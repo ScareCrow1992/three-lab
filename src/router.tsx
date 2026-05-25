@@ -14,6 +14,8 @@ import AnisotropyTab from "./pages/anisotropy";
 import BarnLampTab from "./pages/barn-lamp";
 import MultipleTab from "./pages/multiple";
 import WebGLTab from "./pages/webgl";
+import LineSegmentIntersectionTab from "./pages/line-segment-intersection";
+import PickingTab from "./pages/picking";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +76,16 @@ export const router = createBrowserRouter([
       {
         path: "webgl",
         element: <WebGLTab />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "line-segment-intersection",
+        element: <LineSegmentIntersectionTab />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "picking",
+        element: <PickingTab />,
         errorElement: <NotFoundPage />,
       },
     ],
