@@ -151,7 +151,11 @@ function useCanvasInteraction(
       const height = Math.floor(size.height * pixelRatio);
 
       const pointerPosition = getPointerPosition(ndcX, ndcY, width, height);
-      const pointX = THREE.MathUtils.clamp(pointerPosition.pointX, 0, width - 1);
+      const pointX = THREE.MathUtils.clamp(
+        pointerPosition.pointX,
+        0,
+        width - 1,
+      );
       const pointY = THREE.MathUtils.clamp(
         pointerPosition.pointY,
         0,
@@ -199,14 +203,7 @@ function useCanvasInteraction(
       // RGBA 값이 0~255의 정수로 작성되므로, Uint8Array를 사용해야한다
       const pickingData = new Uint8Array(4);
 
-      await gl.readRenderTargetPixelsAsync(
-        pickingRT,
-        0,
-        0,
-        1,
-        1,
-        pickingData,
-      );
+      await gl.readRenderTargetPixelsAsync(pickingRT, 0, 0, 1, 1, pickingData);
 
       pickingRT.dispose();
 
@@ -403,6 +400,8 @@ export function InstancedMesh() {
 
     // camera.layers.set(PICKING_LAYER);
     // gl.render(scene, camera);
+
+    // console.log(size.width);
     pickRender(
       size.width / 2 + SCISSOR_GAP,
       0,

@@ -62,6 +62,17 @@ export function pickRender(
 
   // initialize
   if (rtv) {
+    // rtv가 null일 경우, 대상은 canvas가 되며
+    // 이때 width와 height는 자동으로 dpr을 곱한 값이 들어간다.
+    // 하지만 rtv가 null이 아닐 경우,
+    // 개발자는 width와 height에 dpr을 직접 적용해야한다.
+    // 이는 함수호출 순서상 영향을 받을 수 있으므로
+    // render target 설정 함수는 제일 앞에 두어야 한다.
+
+    // 하지만 이 패턴은, gl 과 rt의 상태가 매우 애매해진다는 단점이 있다.
+    // 테스트베드 환경에서는 우선 이정도 구현만 진행하고
+    // 추후 gl이 아닌 rt의 viewport와 scissor를 직접 수정하고
+    // gl과 render target의 상태에 대한 심도있는 학습은 별도로 진행하자
     gl.setRenderTarget(rtv);
   }
   camera.layers.set(pickingLayer);
