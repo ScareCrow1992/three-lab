@@ -18,82 +18,90 @@ import LineSegmentIntersectionTab from "./pages/line-segment-intersection";
 import PickingTab from "./pages/picking";
 import PostProcessingSSRTab from "./pages/post-processing/ssr";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      { index: true, element: <Home />, errorElement: <NotFoundPage /> },
-      {
-        path: "animations",
-        element: <AnimationsTab />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "lighting",
-        element: <LightingTab />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "material",
-        element: <MaterialTab />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "webgpu",
-        element: <WebGPUTab />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "zustand-exercise",
-        element: <ZustandExerciseTab />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "post-process",
-        element: <PostProcessTab />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "sponza",
-        element: <SponzaTab />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "anisotropy",
-        element: <AnisotropyTab />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "barn-lamp",
-        element: <BarnLampTab />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "multiple",
-        element: <MultipleTab />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "webgl",
-        element: <WebGLTab />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "line-segment-intersection",
-        element: <LineSegmentIntersectionTab />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "picking",
-        element: <PickingTab />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "ssr",
-        element: <PostProcessingSSRTab />,
-        errorElement: <NotFoundPage />,
-      },
-    ],
-  },
-]);
+const basename =
+  import.meta.env.BASE_URL === "/"
+    ? undefined
+    : import.meta.env.BASE_URL.replace(/\/$/, "");
+
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        { index: true, element: <Home />, errorElement: <NotFoundPage /> },
+        {
+          path: "animations",
+          element: <AnimationsTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "lighting",
+          element: <LightingTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "material",
+          element: <MaterialTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "webgpu",
+          element: <WebGPUTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "zustand-exercise",
+          element: <ZustandExerciseTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "post-process",
+          element: <PostProcessTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "sponza",
+          element: <SponzaTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "anisotropy",
+          element: <AnisotropyTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "barn-lamp",
+          element: <BarnLampTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "multiple",
+          element: <MultipleTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "webgl",
+          element: <WebGLTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "line-segment-intersection",
+          element: <LineSegmentIntersectionTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "picking",
+          element: <PickingTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "ssr",
+          element: <PostProcessingSSRTab />,
+          errorElement: <NotFoundPage />,
+        },
+      ],
+    },
+  ],
+  { basename }
+);
