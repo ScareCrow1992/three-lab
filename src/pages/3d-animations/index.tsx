@@ -25,7 +25,7 @@ function ShaderTest() {
     return () => {
       if (!Array.isArray(mesh.material)) mesh.material.dispose();
     };
-  }, [refMesh.current]);
+  }, []);
 
   return (
     <>
