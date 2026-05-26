@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import { EffectComposer, SMAA } from "@react-three/postprocessing";
 
 function SponzaModel() {

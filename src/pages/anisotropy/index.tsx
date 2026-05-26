@@ -1,15 +1,7 @@
 import * as THREE from "three";
-import {
-  Box,
-  OrbitControls,
-  PerspectiveCamera,
-  Plane,
-  useGLTF,
-  useTexture,
-} from "@react-three/drei";
+import { OrbitControls, useTexture } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useMemo, useRef } from "react";
-import { EffectComposer, SMAA } from "@react-three/postprocessing";
+import { useEffect, useMemo } from "react";
 
 function CheckerBoard({
   scene,
@@ -32,7 +24,7 @@ function CheckerBoard({
   useEffect(() => {
     const plane = new THREE.Mesh(
       new THREE.PlaneGeometry(1000, 1000),
-      new THREE.MeshStandardMaterial({ map: texture })
+      new THREE.MeshStandardMaterial({ map: texture }),
     );
 
     plane.rotation.set(-Math.PI / 2, 0, 0);

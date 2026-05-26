@@ -75,7 +75,7 @@ function CardRender({
   }, [initializeScene]);
 
   const onCanvasControl = useCallback(
-    (ev: MouseEvent) => {
+    (_ev: MouseEvent) => {
       if (!canvasTargetRef.current && canvasRef.current)
         canvasTargetRef.current = new CanvasTarget(canvasRef.current);
 
@@ -106,7 +106,7 @@ function CardRender({
     [initializeScene],
   );
 
-  const offCanvasControl = useCallback((ev: MouseEvent) => {
+  const offCanvasControl = useCallback((_ev: MouseEvent) => {
     if (storeKeyRef.current) RemoveAnimation(storeKeyRef.current);
   }, []);
 

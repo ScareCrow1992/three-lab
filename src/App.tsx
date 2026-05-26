@@ -16,6 +16,7 @@ const TABS = [
   { id: "webgl", label: "WebGL" },
   { id: "line-segment-intersection", label: "Geometry" },
   { id: "picking", label: "Picking" },
+  { id: "ssr", label: "SSR" },
 
   // { id: "1animations", label: "Animations" },
   // { id: "1material", label: "Material" },

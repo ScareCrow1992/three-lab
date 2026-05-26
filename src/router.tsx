@@ -16,6 +16,7 @@ import MultipleTab from "./pages/multiple";
 import WebGLTab from "./pages/webgl";
 import LineSegmentIntersectionTab from "./pages/line-segment-intersection";
 import PickingTab from "./pages/picking";
+import PostProcessingSSRTab from "./pages/post-processing/ssr";
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +87,11 @@ export const router = createBrowserRouter([
       {
         path: "picking",
         element: <PickingTab />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "ssr",
+        element: <PostProcessingSSRTab />,
         errorElement: <NotFoundPage />,
       },
     ],

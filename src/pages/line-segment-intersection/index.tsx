@@ -1,4 +1,4 @@
-import { Box, Grid, OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { Grid, OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
 export default function LineSegmentIntersectionTab() {

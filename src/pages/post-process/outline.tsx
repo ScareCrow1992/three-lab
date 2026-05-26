@@ -1,11 +1,10 @@
 import {
-  Ref,
-  RefObject,
+  type Ref,
+  type RefObject,
   forwardRef,
   useMemo,
   useEffect,
   useContext,
-  useRef,
 } from "react";
 import { Object3D } from "three";
 import { useThree } from "@react-three/fiber";
@@ -41,7 +40,7 @@ export const Outline = /* @__PURE__ */ forwardRef(function Outline(
     xRay,
     ...props
   }: OutlineProps,
-  forwardRef: Ref<OutlineEffect>
+  forwardRef: Ref<OutlineEffect>,
 ) {
   const invalidate = useThree((state) => state.invalidate);
   const { scene, camera } = useContext(EffectComposerContext);
@@ -78,7 +77,7 @@ export const Outline = /* @__PURE__ */ forwardRef(function Outline(
       visibleEdgeColor,
       width,
       xRay,
-    ]
+    ],
   );
 
   const api = useContext(selectionContext);
@@ -90,7 +89,7 @@ export const Outline = /* @__PURE__ */ forwardRef(function Outline(
       effect.selection.set(
         Array.isArray(selection)
           ? (selection as Object3D[]).map(resolveRef)
-          : [resolveRef(selection) as Object3D]
+          : [resolveRef(selection) as Object3D],
       );
       invalidate();
       return () => {
@@ -105,7 +104,7 @@ export const Outline = /* @__PURE__ */ forwardRef(function Outline(
     invalidate();
   }, [effect, invalidate, selectionLayer]);
 
-  const ref = useRef<OutlineEffect>(undefined);
+  // const _ref = useRef<OutlineEffect>(undefined);
   useEffect(() => {
     if (api && api.enabled) {
       if (api.selected?.length) {

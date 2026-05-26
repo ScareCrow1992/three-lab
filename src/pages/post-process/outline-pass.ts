@@ -16,6 +16,7 @@ import {
 import {
   Camera,
   Color,
+  PerspectiveCamera,
   RepeatWrapping,
   Scene,
   Texture,
@@ -106,8 +107,8 @@ const selectedDepthComparisonFragmentShader = `
 `;
 
 class SelectedDepthComparisonMaterial extends DepthComparisonMaterial {
-  constructor(depthTexture: Texture | null, camera: Camera) {
-    super(depthTexture, camera);
+  constructor(depthTexture: Texture | undefined, camera: Camera) {
+    super(depthTexture, camera as PerspectiveCamera);
     this.setValues({
       vertexShader: selectedDepthComparisonVertexShader,
       fragmentShader: selectedDepthComparisonFragmentShader,
@@ -189,7 +190,7 @@ export class OutlineEffect extends Effect {
       height = Resolution.AUTO_SIZE,
       resolutionX = width,
       resolutionY = height,
-    }: OutlineEffectOptions = {}
+    }: OutlineEffectOptions = {},
   ) {
     super("OutlineEffect", fragmentShader, {
       uniforms: new Map<string, Uniform>([
@@ -249,7 +250,7 @@ export class OutlineEffect extends Effect {
 
     this.maskMaterial = new SelectedDepthComparisonMaterial(
       this.depthPass.texture,
-      camera
+      camera,
     );
 
     this.maskPass = new RenderPass(scene, camera, this.maskMaterial);
@@ -266,7 +267,7 @@ export class OutlineEffect extends Effect {
     this.blurPass.enabled = blur;
     const resolution = this.blurPass.resolution;
     resolution.addEventListener("change", () =>
-      this.setSize(resolution.baseWidth, resolution.baseHeight)
+      this.setSize(resolution.baseWidth, resolution.baseHeight),
     );
 
     this.outlinePass = new ShaderPass(new OutlineMaterial());
@@ -292,7 +293,7 @@ export class OutlineEffect extends Effect {
     this.camera = value;
     this.depthPass.mainCamera = value;
     this.maskPass.mainCamera = value;
-    this.maskMaterial.copyCameraSettings(value);
+    this.maskMaterial.adoptCameraSettings(value);
   }
 
   /**
@@ -614,7 +615,7 @@ export class OutlineEffect extends Effect {
   update(
     renderer: WebGLRenderer,
     _inputBuffer: WebGLRenderTarget | null,
-    deltaTime = 0
+    deltaTime = 0,
   ) {
     const scene = this.scene;
     const camera = this.camera;
@@ -636,11 +637,11 @@ export class OutlineEffect extends Effect {
       this.time += deltaTime;
 
       selection.setVisible(false);
-      this.depthPass.render(renderer);
+      this.depthPass.render(renderer, null, null);
       selection.setVisible(true);
 
       camera.layers.set(selection.layer);
-      this.maskPass.render(renderer, this.renderTargetMask);
+      this.maskPass.render(renderer, this.renderTargetMask, null);
 
       camera.layers.mask = mask;
       scene.background = background;
@@ -651,7 +652,7 @@ export class OutlineEffect extends Effect {
         this.blurPass.render(
           renderer,
           this.renderTargetOutline,
-          this.renderTargetOutline
+          this.renderTargetOutline,
         );
       }
     }
@@ -682,7 +683,7 @@ export class OutlineEffect extends Effect {
   initialize(
     renderer: WebGLRenderer,
     alpha: boolean,
-    frameBufferType?: number
+    frameBufferType?: number,
   ) {
     this.blurPass.initialize(renderer, alpha, UnsignedByteType);
 
