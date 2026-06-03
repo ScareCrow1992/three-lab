@@ -1,7 +1,11 @@
 import * as THREE from "three";
-import { OrbitControls, useTexture } from "@react-three/drei";
+import {
+  OrbitControls,
+  PerspectiveCamera,
+  useTexture,
+} from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 function CheckerBoard({
   scene,
@@ -101,12 +105,13 @@ export default function AnisotropyTab() {
       </div>
 
       <div className="relative block w-full h-full">
-        <Canvas className="relative block w-full h-full" shadows>
+        <Canvas
+          className="relative block w-full h-full"
+          shadows
+          camera={{ position: [0, 0.2, 1], fov: 45 }}
+        >
           <color attach="background" args={[new THREE.Color(0xffffff)]} />
-          {/* <SceneRoot /> */}
-          <OrbitControls />
-          {/* <ambientLight color={0x929292} /> */}
-
+          <OrbitControls target={[0, 0, 0]} />
           <CheckerBoard scene={scene1} anisotropy={16} />
           <CheckerBoard scene={scene2} anisotropy={1} />
 

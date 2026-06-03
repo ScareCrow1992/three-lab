@@ -1,8 +1,12 @@
 import { useFrame, useThree, type Size } from "@react-three/fiber";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import vertexShader from "@/shaders/picking/picking.geo.glsl";
-import fragmentShader from "@/shaders/picking/picking.frag.glsl";
+// import vertexShader from "@/shaders/1.00/picking/picking.geo.glsl";
+// import fragmentShader from "@/shaders/1.00/picking/picking.frag.glsl";
+
+import vertexShader300 from "@/shaders/3.00/picking/picking.geo.glsl";
+import fragmentShader300 from "@/shaders/3.00/picking/picking.frag.glsl";
+
 import { usePickingStore } from "../store/picking.store";
 import { useShallow } from "zustand/shallow";
 import { pickRender } from "../util/pick-render";
@@ -364,12 +368,13 @@ export function InstancedMesh() {
 
   const pickingMaterial = useMemo(() => {
     return new THREE.ShaderMaterial({
-      vertexShader: vertexShader,
-      fragmentShader: fragmentShader,
+      vertexShader: vertexShader300,
+      fragmentShader: fragmentShader300,
       depthTest: true,
       depthWrite: true,
       blending: THREE.NoBlending,
       toneMapped: false, // tone mapped를 false로 설정하였으므로, 색상 변화의 영향을 받지 않음
+      glslVersion: THREE.GLSL3,
     });
   }, []);
 

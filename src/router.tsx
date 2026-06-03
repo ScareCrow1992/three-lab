@@ -17,6 +17,7 @@ import WebGLTab from "./pages/webgl";
 import LineSegmentIntersectionTab from "./pages/line-segment-intersection";
 import PickingTab from "./pages/picking";
 import PostProcessingSSRTab from "./pages/post-processing/ssr";
+import PickingGeometryTab from "./pages/picking-geometry";
 
 const basename =
   import.meta.env.BASE_URL === "/"
@@ -96,6 +97,11 @@ export const router = createBrowserRouter(
           errorElement: <NotFoundPage />,
         },
         {
+          path: "picking-geometry",
+          element: <PickingGeometryTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
           path: "ssr",
           element: <PostProcessingSSRTab />,
           errorElement: <NotFoundPage />,
@@ -103,5 +109,5 @@ export const router = createBrowserRouter(
       ],
     },
   ],
-  { basename }
+  { basename },
 );
