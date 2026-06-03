@@ -18,6 +18,7 @@ import LineSegmentIntersectionTab from "./pages/line-segment-intersection";
 import PickingTab from "./pages/picking";
 import PostProcessingSSRTab from "./pages/post-processing/ssr";
 import PickingGeometryTab from "./pages/picking-geometry";
+import { BaryCentricTab } from "./pages/barycenteric";
 
 const basename =
   import.meta.env.BASE_URL === "/"
@@ -104,6 +105,11 @@ export const router = createBrowserRouter(
         {
           path: "ssr",
           element: <PostProcessingSSRTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "barycentric",
+          element: <BaryCentricTab />,
           errorElement: <NotFoundPage />,
         },
       ],

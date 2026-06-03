@@ -17,6 +17,7 @@ const TABS = [
   { id: "line-segment-intersection", label: "Geometry" },
   { id: "picking", label: "Picking" },
   { id: "picking-geometry", label: "Picking Geometry" },
+  { id: "barycentric", label: "barycentric" },
   { id: "ssr", label: "SSR" },
 
   // { id: "1animations", label: "Animations" },
