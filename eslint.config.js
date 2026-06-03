@@ -26,6 +26,7 @@ export default defineConfig([
         "varsIgnorePattern": "^_",
         "caughtErrorsIgnorePattern": "^_"
       }],
+      "react-refresh":{"only-export-components" : "off"}
   }
   },
 ])

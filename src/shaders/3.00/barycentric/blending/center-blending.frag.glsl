@@ -4,7 +4,7 @@ in vec3 vCenter;
 out vec4 vColor;
 
 vec4 colorFromVertexId(uint id){
-  if(id ==0u){
+  if(id == 0u){
     return vec4(1.0, 0 ,0 ,1.0);
   }
   else if(id == 1u){

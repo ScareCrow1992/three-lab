@@ -1,14 +1,15 @@
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as THREE from "three";
 
-import vertexShader from "@/shaders/3.00/barycentric/blending/center-blending.geo.glsl";
-import fragmentShader from "@/shaders/3.00/barycentric/blending/center-blending.frag.glsl";
 import { BarycentricUI } from "./ui";
+import { useBarycentricMaterial } from "./matarials";
 
 function SimplePolygon() {
   const { scene } = useThree();
+
+  const [geometry, setGeometry] = useState<THREE.BufferGeometry>(null!);
 
   useEffect(() => {
     const bufferGeo = new THREE.BufferGeometry();
@@ -40,33 +41,38 @@ function SimplePolygon() {
     const indexAttribute = new THREE.BufferAttribute(indexData, 1, false);
     bufferGeo.setIndex(indexAttribute);
 
-    // const material = new THREE.MeshBasicMaterial();
-    const material = new THREE.ShaderMaterial({
-      vertexShader: vertexShader,
-      fragmentShader: fragmentShader,
-      glslVersion: THREE.GLSL3,
-    });
-
-    const mesh = new THREE.Mesh(bufferGeo, material);
-    scene.add(mesh);
+    setGeometry(bufferGeo);
 
     return () => {
-      mesh.remove(mesh);
       bufferGeo.dispose();
-      material.dispose();
     };
-  }, [scene]);
+  }, [setGeometry]);
+
+  const material = useBarycentricMaterial();
+
+  useEffect(() => {
+    let mesh: THREE.Mesh | null = null;
+    if (geometry && material) {
+      mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+    }
+
+    return () => {
+      if (mesh) scene.remove(mesh);
+    };
+  }, [scene, geometry, material]);
 
   return null;
 }
 
 export function BaryCentricTab() {
   return (
-    <div className="relative block w-full h-full">
+    <div className="relative isolate block w-full h-full">
       <Canvas
-        className="relative block w-full h-full"
+        className="relative z-0 block w-full h-full"
         shadows
         gl={{ toneMapping: THREE.ACESFilmicToneMapping }}
+        camera={{ position: [0, 5, -5], fov: 45 }}
       >
         <color attach="background" args={["black"]} />
         <OrbitControls enablePan={false} />
@@ -82,7 +88,7 @@ export function BaryCentricTab() {
         />
         <SimplePolygon />
       </Canvas>
-      <div className="absolute left-4 top-4 bg-white border-2 rounded-md">
+      <div className="absolute left-4 top-4 z-10 rounded-md border-2 bg-white">
         <BarycentricUI />
       </div>
     </div>
