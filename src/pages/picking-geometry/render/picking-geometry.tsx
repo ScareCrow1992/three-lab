@@ -43,9 +43,9 @@ export function PickingGeometry() {
       const i1 = indexArray[i + 1];
       const i2 = indexArray[i + 2];
 
-      const edge0 = getEdgeId(i0, i1);
-      const edge1 = getEdgeId(i1, i2);
-      const edge2 = getEdgeId(i2, i0);
+      const _edge0 = getEdgeId(i0, i1);
+      const _edge1 = getEdgeId(i1, i2);
+      const _edge2 = getEdgeId(i2, i0);
     }
 
     // geometry.index

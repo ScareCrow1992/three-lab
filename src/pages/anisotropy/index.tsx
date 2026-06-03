@@ -1,11 +1,7 @@
 import * as THREE from "three";
-import {
-  OrbitControls,
-  PerspectiveCamera,
-  useTexture,
-} from "@react-three/drei";
+import { OrbitControls, useTexture } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo } from "react";
 
 function CheckerBoard({
   scene,

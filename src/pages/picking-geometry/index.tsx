@@ -1,4 +1,4 @@
-import { Grid, OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import { PickingGeometry } from "./render/picking-geometry";
