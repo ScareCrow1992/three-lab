@@ -63,9 +63,6 @@ function SimplePolygon() {
 export function BaryCentricTab() {
   return (
     <div className="relative block w-full h-full">
-      <div className="absolute left-4 top-4 bg-white w-[40px] h-[40px] z-10">
-        <BarycentricUI />
-      </div>
       <Canvas
         className="relative block w-full h-full"
         shadows
@@ -85,6 +82,9 @@ export function BaryCentricTab() {
         />
         <SimplePolygon />
       </Canvas>
+      <div className="absolute left-4 top-4 bg-white border-2 rounded-md">
+        <BarycentricUI />
+      </div>
     </div>
   );
 }
