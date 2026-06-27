@@ -19,6 +19,7 @@ const TABS = [
   { id: "picking-geometry", label: "Picking Geometry" },
   { id: "barycentric", label: "barycentric" },
   { id: "ssr", label: "SSR" },
+  { id: "firewood", label: "FireWood" },
 
   // { id: "1animations", label: "Animations" },
   // { id: "1material", label: "Material" },

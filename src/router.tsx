@@ -19,6 +19,7 @@ import PickingTab from "./pages/picking";
 import PostProcessingSSRTab from "./pages/post-processing/ssr";
 import PickingGeometryTab from "./pages/picking-geometry";
 import { BaryCentricTab } from "./pages/barycenteric";
+import FireWoodTab from "./pages/firewood";
 
 const basename =
   import.meta.env.BASE_URL === "/"
@@ -110,6 +111,11 @@ export const router = createBrowserRouter(
         {
           path: "barycentric",
           element: <BaryCentricTab />,
+          errorElement: <NotFoundPage />,
+        },
+        {
+          path: "firewood",
+          element: <FireWoodTab />,
           errorElement: <NotFoundPage />,
         },
       ],
