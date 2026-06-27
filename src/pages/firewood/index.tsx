@@ -16,6 +16,7 @@ import {
 } from "./postprocessing";
 import { useBokehIgnoreStore } from "./use-bokeh-ignore.store";
 import { useShallow } from "zustand/shallow";
+import { applyGoboLuminanceAlphaMask } from "./gobo-alpha-mask";
 
 function GoboMesh() {
   const { gl, scene } = useThree();
@@ -63,8 +64,11 @@ function GoboMesh() {
     const depthMaterial = new THREE.MeshBasicMaterial({
       map: videoTexture,
       alphaTest: 0.5,
-      side: 2,
+      side: THREE.DoubleSide,
     });
+
+    colorMaterial.onBeforeCompile = applyGoboLuminanceAlphaMask;
+    depthMaterial.onBeforeCompile = applyGoboLuminanceAlphaMask;
 
     setColorMaterial(colorMaterial);
     setDepthMaterial(depthMaterial);
@@ -78,6 +82,7 @@ function GoboMesh() {
 
     mesh.customDepthMaterial = depthMaterial;
     mesh.visible = true;
+    mesh.receiveShadow = false;
     mesh.castShadow = true;
     mesh.material.colorWrite = false;
 
